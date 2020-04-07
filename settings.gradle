@@ -1,3 +1,4 @@
 rootProject.name='Commons'
 include ':app'
 include ':core'
+include ':utils'
