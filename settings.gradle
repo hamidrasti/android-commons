@@ -1,0 +1,3 @@
+rootProject.name='Commons'
+include ':app'
+include ':core'
