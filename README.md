@@ -17,25 +17,36 @@ allprojects {
 
 The library is split up into:
 
- - [core](##core)
- - [device](##device)
- - [utils](##utils)
+ - [core](#core)
+ - [device](#device)
+ - [utils](#utils)
  
 You can add this dependencies to your build.gradle based on your need.
 or add all dependencies at once:
 
 ```gradle
-implementation 'com.github.hamraa:android-commons:Tag'
+implementation 'com.github.hamraa:android-commons:latestRelease'
 ```
 
 ## Core
-Core module contains useful classes such as `Singleton`, `TinyDB`, ... for
+Core module contains useful classes such as `Anims`, `Linking`, `Singleton`, `TinyDB`, ... for
 common usage
 
 ```gradle
-implementation 'com.github.hamraa.android-commons:core:Tag'
+implementation 'com.github.hamraa.android-commons:core:latestRelease'
 ```
 
 ## Device
+Device module contains some useful information about the device. this module is based on 
+[react-native-device-info](https://github.com/react-native-community/react-native-device-info)
+
+```gradle
+implementation 'com.github.hamraa.android-commons:device:latestRelease'
+```
 
 ## Utils
+This module contains useful utility classes
+
+```gradle
+implementation 'com.github.hamraa.android-commons:utils:latestRelease'
+```
