@@ -44,6 +44,14 @@ Device module contains some useful information about the device. this module is 
 implementation 'com.github.hamraa.android-commons:device:latestRelease'
 ```
 
+## Time
+Time module contains java.time package for android using coreLibraryDesugaring. this module is
+kotlin version of [persian-date-time](https://github.com/mfathi91/persian-date-time) built with Android in mind.
+
+```gradle
+implementation 'com.github.hamraa.android-commons:time:latestRelease'
+```
+
 ## Utils
 This module contains useful utility classes
 
