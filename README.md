@@ -19,6 +19,7 @@ The library is split up into:
 
  - [core](#core)
  - [device](#device)
+ - [time](#time)
  - [utils](#utils)
  
 You can add this dependencies to your build.gradle based on your need.
