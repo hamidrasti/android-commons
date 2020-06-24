@@ -66,7 +66,7 @@ object Time {
             if (short) return "$builder $suffix"
             parts++
         }
-        if (duration.seconds != 0L) {
+        if (duration.seconds != 0L && abs(duration.seconds) > 5) {
             if (parts > 0) builder.append(", ")
             builder.append("${abs(duration.seconds)} ${TIMES["second"]}")
             if (short) return "$builder $suffix"
