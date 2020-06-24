@@ -19,8 +19,8 @@ class TimeUnitTest {
 
     @Test
     fun period_before() {
-        val now = LocalDateTime.now(ZoneOffset.UTC).minusSeconds(1).format(formatter)
-        assertEquals("1 ثانیه پیش", Time.period(now))
+        val now = LocalDateTime.now(ZoneOffset.UTC).minusSeconds(6).format(formatter)
+        assertEquals("6 ثانیه پیش", Time.period(now))
     }
 
     @Test
@@ -33,11 +33,17 @@ class TimeUnitTest {
 
         val nowPlusNanos = LocalDateTime.now(ZoneOffset.UTC).plusNanos(9999999).format(formatter)
         assertEquals("همین الان", Time.period(nowPlusNanos))
+
+        val nowMinusSeconds = LocalDateTime.now(ZoneOffset.UTC).minusSeconds(3).format(formatter)
+        assertEquals("همین الان", Time.period(nowMinusSeconds))
+
+        val nowPlusSeconds = LocalDateTime.now(ZoneOffset.UTC).plusSeconds(3).format(formatter)
+        assertEquals("همین الان", Time.period(nowPlusSeconds))
     }
 
     @Test
     fun period_after() {
-        val now = LocalDateTime.now(ZoneOffset.UTC).plusSeconds(1).format(formatter)
-        assertEquals("1 ثانیه بعد", Time.period(now))
+        val now = LocalDateTime.now(ZoneOffset.UTC).plusSeconds(6).format(formatter)
+        assertEquals("6 ثانیه بعد", Time.period(now))
     }
 }
