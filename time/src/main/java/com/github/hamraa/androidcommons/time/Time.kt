@@ -2,6 +2,7 @@ package com.github.hamraa.androidcommons.time
 
 import java.time.*
 import java.time.format.DateTimeFormatter
+import kotlin.math.abs
 
 object Time {
 
@@ -22,53 +23,56 @@ object Time {
     fun period(
         date: String?,
         short: Boolean = true,
+        defaultString: String = "همین الان",
         formatter: DateTimeFormatter = DEFAULT_FORMATTER
     ): String {
 
-        if (date.isNullOrBlank()) return "لحظاتی پیش"
+        if (date.isNullOrBlank()) return defaultString
 
         val dateTime = LocalDateTime.parse(date, formatter)
         val now = LocalDateTime.now(ZoneOffset.UTC)
         val period = Period.between(dateTime.toLocalDate(), now.toLocalDate())
         val duration: Duration = Duration.between(dateTime, now)
-        if (duration.isZero) return "لحظاتی پیش"
-        val suffix = if (period.isNegative) "بعد" else "پیش"
+        if (duration.isZero) return defaultString
+        val suffix = if (duration.isNegative || period.isNegative) "بعد" else "پیش"
         val builder = StringBuilder()
         var parts = 0
         if (period.years != 0) {
-            builder.append("${period.years} ${TIMES["year"]}")
+            builder.append("${abs(period.years)} ${TIMES["year"]}")
             if (short) return "$builder $suffix"
             parts++
         }
         if (period.months != 0) {
             if (parts > 0) builder.append(", ")
-            builder.append("${period.months} ${TIMES["month"]}")
+            builder.append("${abs(period.months)} ${TIMES["month"]}")
             if (short) return "$builder $suffix"
             parts++
         }
         if (period.days != 0) {
             if (parts > 0) builder.append(", ")
-            builder.append("${period.days} ${TIMES["day"]}")
+            builder.append("${abs(period.days)} ${TIMES["day"]}")
             if (short) return "$builder $suffix"
             parts++
         }
         if (duration.toHours() != 0L) {
             if (parts > 0) builder.append(", ")
-            builder.append("${duration.toHours()} ${TIMES["hour"]}")
+            builder.append("${abs(duration.toHours())} ${TIMES["hour"]}")
             if (short) return "$builder $suffix"
             parts++
         }
         if (duration.toMinutes() != 0L) {
             if (parts > 0) builder.append(", ")
-            builder.append("${duration.toMinutes()} ${TIMES["minute"]}")
+            builder.append("${abs(duration.toMinutes())} ${TIMES["minute"]}")
             if (short) return "$builder $suffix"
             parts++
         }
         if (duration.seconds != 0L) {
             if (parts > 0) builder.append(", ")
-            builder.append("${duration.seconds} ${TIMES["second"]}")
+            builder.append("${abs(duration.seconds)} ${TIMES["second"]}")
             if (short) return "$builder $suffix"
+            parts++
         }
+        if (parts == 0) return defaultString
         return "$builder $suffix"
     }
 
