@@ -2,6 +2,7 @@ package com.github.hamraa.androidcommons.time
 
 import java.time.*
 import java.time.format.DateTimeFormatter
+import java.time.temporal.ChronoUnit
 import kotlin.math.abs
 
 object Time {
@@ -19,6 +20,13 @@ object Time {
     private val ZONE_TEHRAN = ZoneId.of("Asia/Tehran")
     private val DEFAULT_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
         .withZone(ZoneId.of("UTC"))
+
+    fun diff(date: String?, formatter: DateTimeFormatter = DEFAULT_FORMATTER): Long {
+        if (date.isNullOrBlank()) return 0L
+        val dateTime = LocalDateTime.parse(date, formatter)
+        val now = LocalDateTime.now(ZoneOffset.UTC)
+        return ChronoUnit.SECONDS.between(dateTime, now)
+    }
 
     fun period(
         date: String?,
